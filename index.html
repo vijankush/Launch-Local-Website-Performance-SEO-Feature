@@ -1153,6 +1153,11 @@ if (sticky)
 			        <button type="button" class="btn btn-success" style="margin-left:10px;">Run Audit</button>
 			      </span>
 			    </div>
+          <div id="audit-result">
+            <p style="color:red; font-weight: bold;"></p>
+            <p style="color:green; font-weight: bold;"></p>
+          </div>
+          
 			  </div>
 		  </div>
 
@@ -1786,7 +1791,7 @@ function IsURL(url) {
     return re.test(url);
  }
 document.getElementById("audit-button").getElementsByClassName('btn')[0].addEventListener("click", function() {
-  /* console.log("Button is working"); */
+  document.getElementById("audit-result").getElementsByTagName('p').forEach((ptag) => {ptag.innerHTML = ''}); /* Refreshes P tags */
   var link = document.getElementById("audit-button").getElementsByTagName('input')[0].value;
 
   /* Google API Script */
@@ -1796,9 +1801,11 @@ document.getElementById("audit-button").getElementsByClassName('btn')[0].addEven
   if (!IsURL(link.toString())) {
     console.log("Try again");
     /* Print div with red text that says try again */
+    document.getElementById("audit-result").getElementsByTagName('p')[0].innerHTML += 'Invalid URL. Please try again.';
   } else {
     /* URl Validated - work on API */
     console.log("URL: " + link);
+    document.getElementById("audit-result").getElementsByTagName('p')[1].innerHTML += 'Valid URL. Checking Website Performance...';
   }
 
 });
