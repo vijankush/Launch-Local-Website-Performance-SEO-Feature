@@ -1770,14 +1770,36 @@ Enjoy guaranteed traffic improvement to your organization <br>
   </body>
 /* ADD CUSTOM JAVASCRIPT FOR AUDIT HERE */
 <script>
+/* URL Checker */
+function IsURL(url) {
+  var strRegex = "^((https|http|ftp|rtsp|mms)?://)"
+      + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" 
+      + "(([0-9]{1,3}\.){3}[0-9]{1,3}" 
+      + "|" 
+      + "([0-9a-z_!~*'()-]+\.)*" 
+      + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\."
+      + "[a-z]{2,6})" 
+      + "(:[0-9]{1,4})?"
+      + "((/?)|" 
+      + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+    var re=new RegExp(strRegex);
+    return re.test(url);
+ }
 document.getElementById("audit-button").getElementsByClassName('btn')[0].addEventListener("click", function() {
-  console.log("Button is working");
-  console.log(document.getElementById("audit-button").getElementsByTagName('input')[0].value)
+  /* console.log("Button is working"); */
   var link = document.getElementById("audit-button").getElementsByTagName('input')[0].value;
+
   /* Google API Script */
   /* 1. Validate URL
   2. Nice to have - loading screen
   3. Main thing - API works */
+  if (!IsURL(link.toString())) {
+    console.log("Try again");
+    /* Print div with red text that says try again */
+  } else {
+    /* URl Validated - work on API */
+    console.log("URL: " + link);
+  }
 
 });
 
