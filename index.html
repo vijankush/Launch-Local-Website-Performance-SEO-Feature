@@ -1791,7 +1791,9 @@ function IsURL(url) {
     return re.test(url);
  }
 document.getElementById("audit-button").getElementsByClassName('btn')[0].addEventListener("click", function() {
-  document.getElementById("audit-result").getElementsByTagName('p').forEach((ptag) => {ptag.innerHTML = ''}); /* Refreshes P tags */
+  /* Refreshes P tags */
+  document.getElementById("audit-result").getElementsByTagName('p').forEach((child) => {child.innerHTML = ''}); 
+  /* Save URL*/
   var link = document.getElementById("audit-button").getElementsByTagName('input')[0].value;
 
   /* Google API Script */
